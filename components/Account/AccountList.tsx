@@ -1,40 +1,19 @@
 import React, { ReactElement } from "react";
+import { Account } from "@/utils/types";
 import Card from "../Card";
 
-interface Account {
-  id: number;
-  name: string;
-  description: string;
-  type: "NONE" | "NEED" | "WANT" | "SAVING";
-}
-
-const AccountList = (): ReactElement => {
+const AccountList = ({ accounts }: { accounts: Account[] }): ReactElement => {
   var cards: ReactElement[] = [];
-
-  const accounts: Account[] = [
-    {
-      id: 1,
-      name: "Sueldo",
-      description: "Hexagon Consulting SRL",
-      type: "NONE",
-    },
-    {
-      id: 2,
-      name: "Freelance",
-      description: "Diseño Gráfico",
-      type: "NONE",
-    },
-  ];
 
   accounts.forEach((account: Account) => {
     cards.push(
       <Card
-        key={account.id}
-        id={account.id}
-        navigationUrl={`/account/${account.id}`}
+        key={account._id}
+        id={account._id}
+        navigationUrl={`/account/${account["_id"]}`}
         title={account.name}
         subtitle={account.description}
-        status={account.type}
+        status="NONE"
       />,
     );
   });

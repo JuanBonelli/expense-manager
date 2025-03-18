@@ -8,8 +8,12 @@ interface Account {
   accountId: number;
 }
 
-const Account = ({params} : {params: {accountId: Account['accountId']}}) => {
-  console.log("ACCOUNT ID: ", params.accountId)
+const Account = ({
+  params,
+}: {
+  params: { accountId: Account["accountId"] };
+}) => {
+  console.log("ACCOUNT ID: ", params.accountId);
   return (
     <section className="flex h-full flex-col">
       <Header title="1,000,000.00" subtitle="ARS" showControls={true} />
@@ -20,7 +24,11 @@ const Account = ({params} : {params: {accountId: Account['accountId']}}) => {
             subtitle="Luz, Gas, Internet, Salud, Educación"
             size="small"
           />
-          <ProgressBar progress={0.2} total="500,000.00 ARS" showTotal={true} />
+          <ProgressBar
+            progress={"0.25"}
+            total="500,000.00 ARS"
+            showTotal={true}
+          />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -30,7 +38,7 @@ const Account = ({params} : {params: {accountId: Account['accountId']}}) => {
             size="small"
           />
           <ProgressBar
-            progress={0.75}
+            progress={"0.4"}
             total="300,000.00 ARS"
             showTotal={true}
           />
@@ -42,7 +50,11 @@ const Account = ({params} : {params: {accountId: Account['accountId']}}) => {
             subtitle="Shopping, Accesorios, Ropa"
             size="small"
           />
-          <ProgressBar progress={0.5} total="200,000.00 ARS" showTotal={true} />
+          <ProgressBar
+            progress={"0.3"}
+            total="200,000.00 ARS"
+            showTotal={true}
+          />
         </div>
 
         <AccountFooter accountId={params.accountId} />

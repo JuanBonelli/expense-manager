@@ -1,9 +1,11 @@
 "use client";
 
 import { Account } from "@/utils/types";
-import React, { useEffect, useState } from "react";
 import Heading from "../Heading";
 import AccountList from "./AccountList";
+
+import React, { ReactElement, useEffect, useState } from "react";
+import SkeletonList from "../SkeletonList";
 
 interface AccountResponse {
   data: Account[];
@@ -11,17 +13,28 @@ interface AccountResponse {
 
 const AccountContent = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getAccounts();
   }, []);
 
   const getAccounts = async () => {
+    setLoading(true);
     fetch("http://localhost:3000/api/account")
       .then((res: any) => res.json())
-      .then((res: any) => {
+      .then((res: AccountResponse) => {
         setAccounts(res.data);
+        setLoading(false);
       });
+  };
+
+  const getListControl = (): ReactElement => {
+    return <AccountList accounts={accounts} />;
+  };
+
+  const getLoadingControl = (): ReactElement => {
+    return <SkeletonList />;
   };
 
   return (
@@ -31,7 +44,8 @@ const AccountContent = () => {
         subtitle="Seleccione una Cuenta"
         size="default"
       />
-      <AccountList accounts={accounts} />
+
+      {loading ? getLoadingControl() : getListControl()}
     </div>
   );
 };

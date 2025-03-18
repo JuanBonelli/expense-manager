@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  AdjustmentsHorizontalIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import Link from "next/link";
 import React, { ReactElement } from "react";
+import { Button } from "./ui/button";
+import { XMarkIcon } from "@heroicons/react/16/solid";
 
 interface Heading {
   title: string;
@@ -31,10 +28,10 @@ const Heading = ({
 
     switch (size) {
       case "small":
-        titleProperties = "text-base text-slate-500";
+        titleProperties = "text-base text-slate-700";
         break;
       case "large":
-        titleProperties = "text-2xl text-slate-900";
+        titleProperties = "text-2xl text-slate-800";
         break;
       case "default":
         titleProperties = "text-xl text-slate-700";
@@ -47,52 +44,32 @@ const Heading = ({
     return titleProperties;
   };
 
-  const getSubtitleProperties = (
-    size: "small" | "large" | "default",
-  ): string => {
-    var subtitleProperties: string = "";
-
-    switch (size) {
-      case "small":
-        subtitleProperties = "text-sm text-slate-400";
-        break;
-      case "large":
-        subtitleProperties = "text-xl text-slate-700";
-        break;
-      case "default":
-        subtitleProperties = "text-base text-slate-400";
-        break;
-      default:
-        subtitleProperties = "";
-        break;
-    }
-
-    return subtitleProperties;
-  };
 
   return (
     <div className="flex w-full justify-between">
       <div className="flex flex-col">
         <span className={`${getTitleProperties(size)} font-bold`}>{title}</span>
-        <span className={`${getSubtitleProperties(size)}`}>{subtitle}</span>
+        <span className={`text-slate-500 text-sm`}>{subtitle}</span>
       </div>
 
       <div
         className={`items-center gap-2 ${showBackButton ? "flex" : "hidden"}`}
       >
-        <button
+        <Button
+          size={"icon"}
           onClick={onClickCallback}
-          className={`${showActionButton ? 'flex' : 'hidden'} flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-400`}
+          className={`${showActionButton ? "flex" : "hidden"}`}
         >
           {actionButtonIcon}
-        </button>
+        </Button>
 
-        <Link
-          href={"javascript:history.back()"}
-          className={`${showBackButton ? 'flex' : 'hidden'} flex h-12 w-12 items-center justify-center rounded-2xl border-1 border-slate-400 bg-transparent`}
+        <Button
+          size={"icon"}
+          variant={"outline"}
+          className={`${showBackButton ? "flex" : "hidden"}`}
         >
-          <XMarkIcon className="h-6 text-slate-400" />
-        </Link>
+          <XMarkIcon className="h-6" />
+        </Button>
       </div>
     </div>
   );

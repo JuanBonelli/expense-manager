@@ -1,19 +1,12 @@
+import React from "react";
+
 import AccountFooter from "@/components/Account/AccountFooter";
 import Header from "@/components/Header/Header";
 import Heading from "@/components/Heading";
-import ProgressBar from "@/components/ProgressBar";
-import React from "react";
 
-interface Account {
-  accountId: number;
-}
+import { Progress } from "@/components/ui/progress";
 
-const Account = ({
-  params,
-}: {
-  params: { accountId: Account["accountId"] };
-}) => {
-  console.log("ACCOUNT ID: ", params.accountId);
+const Account = ({ params }: { params: { accountId: number } }) => {
   return (
     <section className="flex h-full flex-col">
       <Header title="1,000,000.00" subtitle="ARS" showControls={true} />
@@ -24,11 +17,8 @@ const Account = ({
             subtitle="Luz, Gas, Internet, Salud, Educación"
             size="small"
           />
-          <ProgressBar
-            progress={"0.25"}
-            total="500,000.00 ARS"
-            showTotal={true}
-          />
+
+          <Progress value={25} />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -37,11 +27,7 @@ const Account = ({
             subtitle="Plazos Fijos, Dólares, Inversiones"
             size="small"
           />
-          <ProgressBar
-            progress={"0.4"}
-            total="300,000.00 ARS"
-            showTotal={true}
-          />
+          <Progress value={75} />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -50,11 +36,7 @@ const Account = ({
             subtitle="Shopping, Accesorios, Ropa"
             size="small"
           />
-          <ProgressBar
-            progress={"0.3"}
-            total="200,000.00 ARS"
-            showTotal={true}
-          />
+          <Progress value={50} />
         </div>
 
         <AccountFooter accountId={params.accountId} />

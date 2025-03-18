@@ -2,7 +2,7 @@
 
 import Heading from "@/components/Heading";
 import MovementsList from "@/components/Movements/MovementsList";
-import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/16/solid";
 import React from "react";
 
 const Movements = () => {
@@ -16,7 +16,7 @@ const Movements = () => {
         subtitle="Marzo"
         showBackButton={true}
         showActionButton={true}
-        actionButtonIcon={<AdjustmentsHorizontalIcon className="h-6 text-slate-50" />}
+        actionButtonIcon={<AdjustmentsHorizontalIcon className="h-6 w-6 text-slate-50" />}
         onClickCallback={handleToggleFilters}
         size="default"
       />

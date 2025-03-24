@@ -6,10 +6,18 @@ import Heading from "@/components/Heading";
 
 import { Progress } from "@/components/ui/progress";
 
-const Account = ({ params }: { params: { accountId: number } }) => {
+interface Account {
+  params: {
+    accountId: number;
+  };
+}
+
+const Account = async ({ params }: Account) => {
+  const {accountId} = await params;
+
   return (
     <section className="flex h-full flex-col">
-      <Header title="1,000,000.00" subtitle="ARS" showControls={true} />
+      <Header title="958,000.00" subtitle="ARS" showControls={true} />
       <div className="flex h-full flex-col gap-4 p-8 pt-0">
         <div className="flex flex-col gap-2">
           <Heading
@@ -39,7 +47,7 @@ const Account = ({ params }: { params: { accountId: number } }) => {
           <Progress value={50} />
         </div>
 
-        <AccountFooter accountId={params.accountId} />
+        <AccountFooter accountId={accountId} />
       </div>
     </section>
   );

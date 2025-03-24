@@ -1,50 +1,25 @@
 "use client";
 
 import Heading from "@/components/Heading";
-import MovementForm from "@/components/Movements/MovementForm";
+import MovementForm from "@/components/Movements/MovementCreationForm";
+import MovementDetailForm from "@/components/Movements/MovementDetailForm";
+import { Movement } from "@/utils/types";
+
 import { PencilIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
-interface Category {
-  id: number;
-  name: "WANT" | "NEED" | "SAVING" | "NONE";
-}
-
-interface Account {
-  id: number;
-  name: string;
-  description: string;
-}
-
-interface Movement {
-  id: number;
-  account: Account;
-  title: string;
-  amount: string;
-  category: Category;
-  creationDate: string;
-  description: string;
-}
-
-const Movement = ({ params }: { params: { movementId: Movement["id"] } }) => {
+const Movements = ({ params }: { params: { movementId: number} }) => {
 
   const [editable, setEditable] = useState(false);
 
   var movement: Movement = {
-    id: 1,
-    account: {
-      id: 1,
-      name: "Cuenta Sueldo",
-      description: "Hexagon Consulting SRL",
-    },
-    amount: "35.200,00 ARS",
-    category: {
-      id: 1,
-      name: "WANT",
-    },
-    creationDate: "Marzo 14, 2025",
+    _id: '6asdfsd142513sdf',
+    accountId: '24213213',
+    amount: "35200",
+    categoryId: '67d83429e136294661cfb462',
     title: "Esquirla del Amanecer",
     description: "Cuarto libro de la saga “El Archivo de las Tormentas",
+    createdAt: new Date().toString()
   };
 
   const toggleEditable = () => {
@@ -52,22 +27,25 @@ const Movement = ({ params }: { params: { movementId: Movement["id"] } }) => {
   };
 
   return (
-    <section className="p-8">
+    <section className="flex h-full flex-col p-8">
       <Heading
         title="Detalle de Movimiento"
         subtitle={movement.title}
         showBackButton={true}
         showActionButton={true}
         actionButtonIcon={editable ? <CheckCircleIcon className="h-6 text-slate-50" /> : <PencilIcon className="h-6 text-slate-50" />}
+        actionWithDrawer={false}
         onClickCallback={toggleEditable}
         size="default"
       />
 
-      <div className="mt-4">
-        <MovementForm editable={editable} />
+      <div className="mt-4 grow">
+        <MovementDetailForm movement={movement} editable={editable} />
       </div>
     </section>
   );
 };
 
-export default Movement;
+export default Movements;
+
+

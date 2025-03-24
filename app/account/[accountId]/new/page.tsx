@@ -1,5 +1,7 @@
 import Heading from "@/components/Heading";
-import MovementForm from "@/components/Movements/MovementForm";
+import MovementCreationForm from "@/components/Movements/MovementCreationForm";
+import MovementForm from "@/components/Movements/MovementCreationForm";
+
 import React from "react";
 
 const NewMovement = () => {
@@ -13,12 +15,8 @@ const NewMovement = () => {
       />
 
       <div className="mt-4 grow">
-        <MovementForm editable />
+        <MovementCreationForm />
       </div>
-
-      <button className="h-10 w-full rounded-lg bg-slate-400 text-slate-200">
-        Crear
-      </button>
     </section>
   );
 };

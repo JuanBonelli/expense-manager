@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import { Account } from "@/utils/types";
 import Card from "../Card";
+import { Button } from "../ui/button";
 
 const AccountList = ({ accounts }: { accounts: Account[] }): ReactElement => {
   var cards: ReactElement[] = [];
@@ -13,12 +14,17 @@ const AccountList = ({ accounts }: { accounts: Account[] }): ReactElement => {
         navigationUrl={`/account/${account["_id"]}`}
         title={account.name}
         subtitle={account.description}
-        status="NONE"
+        creationDate={''}
+        categoryId="NONE"
       />,
     );
   });
 
-  return <div className="mt-8 flex w-full flex-col gap-4">{cards}</div>;
+  return (
+    <div className="mt-4 flex w-full flex-col gap-4">
+      {cards} <Button variant={"secondary"}>Nueva Cuenta</Button>{" "}
+    </div>
+  );
 };
 
 export default AccountList;

@@ -18,16 +18,21 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { amount, description, accountId, categoryId } = await req.json();
+    const { title, description, amount, accountId, categoryId } =
+      await req.json();
     await dbConnect();
-    await Movement.create({ amount, description, accountId, categoryId });
+    await Movement.create({
+      title,
+      description,
+      amount,
+      accountId,
+      categoryId,
+    });
     return NextResponse.json({ message: "Movement Created" }, { status: 201 });
   } catch (err) {
     return NextResponse.json(
-      { error: "Failed to create Movement" },
+      { error: "Failed to create Movement" + err },
       { status: 500 },
     );
   }
 };
-
-
